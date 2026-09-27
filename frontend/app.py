@@ -4,7 +4,7 @@ import requests
 import streamlit as st
 
 
-API_URL = os.getenv("CAMPUS_TWIN_API_URL", "http://127.0.0.1:8015")
+API_URL = os.getenv("CAMPUS_TWIN_API_URL", "https://campustwinai.onrender.com")
 
 
 st.set_page_config(page_title="CampusTwin AI", page_icon="🎓", layout="wide")
