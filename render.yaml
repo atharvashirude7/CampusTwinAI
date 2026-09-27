@@ -1,0 +1,18 @@
+services:
+  - type: web
+    name: campus-twin-api
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.app:app --workers 2 --worker-class uvicorn.workers.UvicornWorker --bind 0.0.0.0:$PORT
+    healthCheckPath: /
+
+  - type: web
+    name: campus-twin-ui
+    env: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: streamlit run frontend/app.py --server.address 0.0.0.0 --server.port $PORT --server.headless true
+    envVars:
+      - key: CAMPUS_TWIN_API_URL
+        value: https://campus-twin-api.onrender.com
